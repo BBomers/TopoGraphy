@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,18 +32,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-/*
-// Place all the routes here that are for the admin
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/admin/createBoard', [BoardController::class, 'create'])->name('admin.createBoard');
-    Route::post('/admin/boards', [BoardController::class, 'store'])->name('admin.storeBoard');
-    Route::get('/admin/deleteBoard', [BoardController::class, 'showAllBoards'])->name('admin.deleteBoard');
-    Route::delete('/admin/deleteBoard/{board}', [BoardController::class, 'destroy'])->name('admin.destroyBoard');
-});
-
-Route::get('/{board}', [BoardController::class, 'show']);*/
-
 Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.dashboard');
+});
+
+Route::middleware(['auth', 'role:student'])->group(function () {
+    Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
+    Route::get('/student/quizz-preview', function () {
+        return view('student.quizz-preview');
+    })->name('student.quiz-preview');
+    
 });
