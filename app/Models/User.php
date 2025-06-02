@@ -24,6 +24,22 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function teacher()
+    {
+        return $this->belongsTo(User::class, 'teacher_id');
+    }
+
+    public function students()
+    {
+        return $this->hasMany(User::class, 'teacher_id');
+    }
+
+    public function scores()
+    {
+        return $this->hasMany(Score::class);
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
