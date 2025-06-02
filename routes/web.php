@@ -6,6 +6,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentQuizController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +35,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'role:teacher'])->group(function () {
-    Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.dashboard');
+    Route::get('/teacher', [TeacherController::class, 'showStudents'])->name('teacher.dashboard');
+    Route::post('/teacher/invite/{student}', [TeacherController::class, 'invite'])->name('teacher.invite');
+    Route::get('/teacher/student/{student}', [TeacherController::class, 'showStudent'])
+    ->name('teacher.student.show');
+
+
 });
 
 Route::middleware(['auth', 'role:student'])->group(function () {
