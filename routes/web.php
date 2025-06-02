@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentQuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,8 @@ Route::middleware(['auth', 'role:student'])->group(function () {
     Route::get('/student/quizz-preview', function () {
         return view('student.quizz-preview');
     })->name('student.quiz-preview');
+
+    Route::resource('/student/quiz', StudentQuizController::class);
+
     
 });
