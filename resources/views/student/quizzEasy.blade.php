@@ -14,6 +14,11 @@
     .city:hover {
         fill: limegreen;
     }
+
+    h2, 
+    .mb-2 {
+        color: black;
+    }
 </style>
 <x-app-layout>
     <x-slot name="header">

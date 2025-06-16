@@ -58,6 +58,21 @@ class TeacherController extends Controller
         return back()->with('success', "Invite sent to {$student->name}.");
     }
 
+    public function removeStudent($studentId)
+    {
+        $student = User::findOrFail($studentId);
+
+        if (!$student->hasRole('student')) {
+            return back()->with('error', 'This user is not a student.');
+        }
+    
+        // Assign the currently logged-in teacher as the student's teacher
+        $student->teacher_id = null;
+        $student->save();
+
+        return back()->with('success', "Student removed {$student->name}.");
+    }
+
     /**
      * Show the form for creating a new resource.
      */

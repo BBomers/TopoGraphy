@@ -37,6 +37,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth', 'role:teacher'])->group(function () {
     Route::get('/teacher', [TeacherController::class, 'showStudents'])->name('teacher.dashboard');
     Route::post('/teacher/invite/{student}', [TeacherController::class, 'invite'])->name('teacher.invite');
+    Route::post('/teacher/removeStudent/{student}', [TeacherController::class, 'removeStudent'])->name('teacher.removeStudent');
     Route::get('/teacher/student/{student}', [TeacherController::class, 'showStudent'])
     ->name('teacher.student.show');
 
@@ -45,9 +46,12 @@ Route::middleware(['auth', 'role:teacher'])->group(function () {
 
 Route::middleware(['auth', 'role:student'])->group(function () {
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
-    Route::get('/student/quizz-preview', function () {
-        return view('student.quizz-preview');
-    })->name('student.quiz-preview');
+    Route::get('/student/easyQuizz', function () {
+        return view('student.quizzEasy');
+    })->name('student.easyQuizz');
+    Route::get('/student/hardQuizz', function () {
+        return view('student.quizzHard');
+    })->name('student.hardQuizz');
 
     Route::resource('/student/quiz', StudentQuizController::class);
 

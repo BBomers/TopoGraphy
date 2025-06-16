@@ -12,7 +12,9 @@
                     {{ __("You're logged in!") }}
                 </div>
 
-                <a href="{{ route('student.quiz-preview') }}">Dev quiz</a>
+                <a href="{{ route('student.easyQuizz') }}">Quizz Easy Dificulty</a>
+                <br><br>
+                <a href="{{ route('student.hardQuizz') }}">Quizz impossible difficulty</a>
 
             </div>
         </div>

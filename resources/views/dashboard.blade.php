@@ -19,9 +19,11 @@
 </x-app-layout>
 
 <style>
+    button {
+        width: 100%;
+    }
+
     a:hover, .h:hover, button:hover  {
-        color: red;
-        font-size: 300px;
-        transform: skew(30deg, 20deg);
+        opacity: 0.85;
     }
 </style>
